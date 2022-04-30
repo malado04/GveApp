@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GveApp.views.ModuleListPage"
+             Title="Liste des modules">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icons8_plus_math_48px.png" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView  x:Name="liste_de_modules"
+                   IsGroupingEnabled="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="8,0,8,0">
+                                <Label Text="{Binding Id}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding num_col}" TextColor="#000" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding libelle_col}" TextColor="#000" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </ViewCell> 
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

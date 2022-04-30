@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GveApp.views.DetailsPage"
+             Title="Marguerite">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Distance : 550m" FontSize="20" HorizontalOptions="Center" TextColor="Black"/>
+            <Label Text="UID : 1234567890" FontSize="20" HorizontalOptions="Center"  TextColor="Black"/>
+            <Label Text="Baterie : 28% (Collier)" FontSize="20" HorizontalOptions="Center"  TextColor="Black"/>
+            <Label Text="Temps : 2:53 min:sec" FontSize="20" HorizontalOptions="Center"  TextColor="Black"/>
+            <Button VerticalOptions="EndAndExpand" 
+                    Text="Plus d'info" 
+                    Clicked="Button_Clicked"
+                    BackgroundColor="White" 
+                    TextColor="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

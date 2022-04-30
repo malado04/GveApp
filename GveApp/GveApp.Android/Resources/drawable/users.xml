@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<users>
+  <u1>
+    <id>1</id>
+    <name>Thomas</name>
+  </u1>
+
+  <u2>
+    <id>2</id>
+    <name>Justin</name>
+  </u2>
+  <u3>
+    <id>3</id>
+    <name>Vincent</name>
+  </u3>
+  <u4>
+    <id>4</id>
+    <name>Yvette</name>
+  </u4>
+  <u5>
+    <id>5</id>
+    <name>Clémence</name>
+  </u5>
+</users>

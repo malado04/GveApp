@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:GveApp.views"
+             x:Class="GveApp.views.ShellMain">
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="#004A99"
+              HeightRequest="200">
+                <Image Aspect="AspectFill"
+                   Source="xamarinstore.jpg"
+                   Opacity="0.6" />
+                <Label Text="GVE"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"  FontSize="50"/>
+                <Label Text="Powered by Enekio"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" FontSize="14"
+                   VerticalTextAlignment="Center" Margin="50,70,0,0" />
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" 
+                Shell.TitleColor="White" 
+                Shell.UnselectedColor="LightGray"
+                Shell.BackgroundColor="#004A99"
+                >
+        <ShellContent Title="Accueil" 
+                      Icon="icons8_house_48px.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:MapPage}"/>
+        
+        <ShellContent Title="Liste des modules" 
+                      Icon="icons8_axis_alignment_48px.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:ModuleListPage}"/>
+
+
+        <ShellContent Title="Notifications" 
+                      Icon="icons8_notification_48px.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:NotificationPage}"/>
+        
+        <ShellContent Title="Paramètres" 
+                      Icon="icons8_settings_48px.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:SettingsPage}"/>
+
+        <ShellContent Title="A propos" 
+                      Icon="icons8_about_48px_1.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:AboutPage}"/>
+
+        <ShellContent Title="Aide" 
+                      Icon="icons8_help_48px.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:HelpPage}"/>
+        
+        <!--<ShellContent Title="Utilisateur" 
+                      Icon="icons8_help_48px.png" 
+                      IsTabStop="False" 
+                      ContentTemplate="{DataTemplate views:UsersPage}"/>-->
+    </FlyoutItem>
+</Shell>

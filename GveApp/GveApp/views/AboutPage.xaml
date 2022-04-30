@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GveApp.views.AboutPage"
+             Title="A propos">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="drawable/logo.png" HeightRequest="120">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                    Tapped="TapGestureRecognizer_Tapped"
+                    NumberOfTapsRequired="3" />
+                </Image.GestureRecognizers>
+            </Image>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label HorizontalOptions="Center" Text="21 avenir Générale de Gaulle" FontSize="22" TextColor="Black"/>
+                <Label HorizontalOptions="Center" Text="34690 Fabrègues" FontSize="22" TextColor="Black"/>
+                <Label HorizontalOptions="Center" Text="04000000000" FontSize="22" TextColor="Black"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

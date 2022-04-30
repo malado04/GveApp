@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GveApp.views.AddModulePage"
+             Title="Ajouter un module">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="drawable/qrcode.png" Margin="40"/>
+            <Label x:Name="txtBarcode" HorizontalTextAlignment="Center"/>
+            <Button x:Name="btn_scanner" 
+                    BackgroundColor="White"
+                    TextColor="#004A99"
+                    Text="Scanner le QR Code"
+                    BorderColor="#004A99"
+                    BorderWidth="1"
+                    Margin="1"
+                    Clicked="Button_Clicked" VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

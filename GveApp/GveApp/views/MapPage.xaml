@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="GveApp.views.MapPage"
+             Title="Accueil">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <gmaps:Map x:Name="MyMap"
+                           HeightRequest="1500"  
+                           VerticalOptions="CenterAndExpand" 
+                           HasZoomEnabled="True" 
+                           MyLocationEnabled="True" MapType="Street">
+                    <gmaps:Map.ItemTemplate>
+                        <DataTemplate>
+                            <gmaps:Pin Icon="{Binding PinIcon}" 
+                                       Position="{Binding p}"
+                                       Label="{Binding PinLabel}" 
+                                       Address="{Binding PlaceName}" />
+                        </DataTemplate>
+                    </gmaps:Map.ItemTemplate>
+                </gmaps:Map>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
