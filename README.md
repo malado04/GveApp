@@ -1,138 +1,553 @@
-Fonctionnalités de l'application GVE
-1. Authentification et accès à l'application
-Écran de connexion utilisateur.
-Saisie du nom d'utilisateur et du mot de passe.
-Gestion d'un accès administrateur distinct.
-Possibilité d'accéder à l'espace administrateur via une action cachée sur le logo.
-Demande de permission d'accès à la localisation du téléphone.
-2. Géolocalisation des modules / colliers
+# GVE — Geolocation & Tracking Mobile Application
 
-C'est la fonctionnalité principale de l'application.
+**GVE (Geolocation & Tracking Application)** is a cross-platform mobile application designed to monitor and visualize the geographic position of connected modules and tracking collars.
 
-Localisation géographique des modules/colliers.
-Récupération des coordonnées GPS via une API distante.
-Affichage des positions sur une carte Google Maps.
-Affichage de la position actuelle du téléphone.
-Actualisation périodique de la position.
-Affichage des modules sous forme de marqueurs sur la carte.
-Affichage de la zone autour d'une position avec un cercle géographique.
-Zoom et déplacement sur la carte.
+The application combines **GPS geolocation, interactive maps, QR Code scanning and REST API communication** to provide a mobile interface for managing and monitoring connected tracking equipment.
 
-Le modèle PositionModule confirme la gestion de :
+> **Project status:** Active development / prototype
+> **Platforms:** Android & iOS
+> **Framework:** Xamarin.Forms
 
-identifiant du module ;
-numéro/identifiant du collier ;
-latitude ;
-longitude ;
-date de localisation.
-3. Suivi des colliers
+---
 
-L'application semble conçue pour suivre des colliers connectés ou modules de localisation.
+## 📱 Overview
 
-Le code prévoit notamment :
+GVE provides a mobile interface for operators who need to identify, locate and monitor connected modules or collars.
 
-identification des colliers ;
-récupération de leur position ;
-affichage individuel sur la carte ;
-identification des colliers par numéro ;
-suivi de leur localisation dans le temps.
+The application communicates with a remote REST API to retrieve tracking information and displays geographic positions directly on a map.
 
-La page de détails prévoit également des informations telles que :
+### Main workflow
 
-distance ;
-UID ;
-niveau de batterie ;
-durée/temps ;
-informations complémentaires.
-4. Gestion des modules
+```text
+        ┌─────────────────────┐
+        │   Mobile Application│
+        │      GVE / GveApp   │
+        └──────────┬──────────┘
+                   │
+          REST API / JSON
+                   │
+                   ▼
+        ┌─────────────────────┐
+        │    Remote Backend   │
+        │                     │
+        │ Modules / Positions │
+        └──────────┬──────────┘
+                   │
+                   ▼
+        ┌─────────────────────┐
+        │ GPS / Tracking Data │
+        └──────────┬──────────┘
+                   │
+                   ▼
+             Google Maps
+```
 
-L'application possède une section Liste des modules.
+---
 
-Elle permet :
+## ✨ Features
 
-d'afficher les modules récupérés depuis l'API ;
-d'afficher leur identifiant ;
-d'afficher leur numéro de collier ;
-d'afficher leur libellé ;
-d'accéder à une fonction d'ajout de module.
+### 🔐 Authentication
 
-L'API utilisée dans le code est notamment :
+The application provides an authentication interface for accessing the mobile application.
 
+Current functionality includes:
+
+* User login
+* Username/password authentication interface
+* Administrator access
+* Location permission request
+* Protected application areas
+
+---
+
+### 📍 GPS Geolocation
+
+Geolocation is one of the main features of GVE.
+
+The application can:
+
+* Retrieve GPS coordinates
+* Display the current device location
+* Retrieve module/collar positions from a remote API
+* Display geographic positions on a map
+* Refresh location information
+* Navigate and zoom on the map
+* Display geographic areas around a position
+
+Each position can contain information such as:
+
+```text
+Module ID
+Collar ID
+Latitude
+Longitude
+Location date
+```
+
+---
+
+### 🗺️ Interactive Map
+
+GVE integrates map visualization to provide a geographic view of connected equipment.
+
+The map interface supports:
+
+* Module/collar markers
+* Current device position
+* Geographic positioning
+* Zoom and map navigation
+* Position visualization
+* Geographic radius around a location
+
+This provides operators with a visual representation of the equipment being monitored.
+
+---
+
+### 📡 Collar Tracking
+
+The application is designed to monitor connected tracking collars/modules.
+
+The tracking interface can provide information such as:
+
+* Collar identifier
+* Module identifier
+* UID
+* Position
+* Distance
+* Battery level
+* Tracking time
+* Additional equipment information
+
+The application architecture is designed to support the monitoring of individual tracking devices.
+
+---
+
+### 📦 Module Management
+
+GVE includes a module management section.
+
+Users can:
+
+* Display available modules
+* Retrieve modules from the REST API
+* View module identifiers
+* View collar numbers
+* View module labels
+* Access the module creation workflow
+
+The application consumes the module endpoint:
+
+```text
 /api/modules
-5. Ajout d'un module par QR Code
+```
 
-Le projet intègre une fonctionnalité de lecture de QR Code.
+---
 
-Depuis Ajouter un module :
+### 📷 QR Code Module Registration
 
-ouverture du scanner ;
-lecture d'un QR Code ;
-récupération de la valeur du QR Code ;
-affichage de la valeur scannée ;
-gestion d'une erreur lorsque le QR Code n'est pas valide ;
-possibilité de relancer le scan.
+GVE integrates QR Code scanning to simplify the identification and registration of modules.
 
-C'est une fonctionnalité intéressante pour associer rapidement un module/collier à l'application.
+The workflow includes:
 
-6. Notifications
+```text
+Add Module
+    ↓
+Open QR Scanner
+    ↓
+Scan QR Code
+    ↓
+Retrieve QR Value
+    ↓
+Validate Data
+    ↓
+Associate Module
+```
 
-Une rubrique Notifications est prévue.
+The application handles invalid QR codes and allows the user to retry the scanning operation.
 
-Elle permet d'afficher :
+---
 
-la date de notification ;
-le message ;
-une liste de notifications.
+### 🔔 Notifications
 
-Dans la version actuelle du code, les notifications sont encore des données de démonstration et non un véritable système de notifications connecté au serveur.
+A notification section is included in the application.
 
-7. Paramètres
+It provides a structure for displaying:
 
-Une rubrique Paramètres est présente dans l'application.
+* Notification date
+* Notification message
+* Notification list
 
-Cependant, dans la version fournie, elle contient essentiellement la structure de la page et n'implémente pas encore de fonctionnalités avancées.
+> **Current status:** The current version uses demonstration data. A complete server-side notification system is not yet implemented.
 
-8. Aide et informations
+---
 
-L'application possède également :
+### ⚙️ Settings
 
-une rubrique Aide ;
-une rubrique À propos ;
-une page d'informations complémentaires.
+The application includes a settings section.
 
-Certaines de ces pages sont encore des écrans de base.
+The current version provides the basic structure for this section, while advanced configuration features remain under development.
 
-9. Communication avec une API
+---
 
-L'application mobile communique avec un serveur distant via des API REST.
+### ❓ Help & About
 
-On retrouve notamment :
+GVE also includes:
 
-https://www.ipmie.com/esp/public/index.php/api/
+* Help section
+* About section
+* Application information
+* Additional information screens
 
-et des endpoints pour :
+Some of these screens are currently basic application views.
 
+---
+
+## 🌐 REST API Integration
+
+GVE communicates with a remote backend through REST APIs.
+
+The application retrieves JSON data from remote endpoints and uses this information to update the mobile interface.
+
+Example API resources include:
+
+```text
 /api/modules
 /api/positions
-/api/position/{colier}
+/api/position/{collar}
+```
 
-Les données sont récupérées au format JSON puis utilisées dans l'application mobile.
+### Data flow
 
-10. Application mobile multiplateforme
-
-Le projet est développé avec :
-
-Xamarin.Forms
-
-et contient des projets :
-
-GveApp.Android
-GveApp.iOS
+```text
+Mobile App
+    │
+    │ HTTP / REST
+    ▼
+Remote API
+    │
+    │ JSON
+    ▼
 GveApp
+    │
+    ├── Modules
+    ├── Positions
+    └── Tracking information
+```
 
-L'application est donc structurée pour fonctionner sur :
+> **Security note:** API credentials and sensitive configuration values should not be committed to the repository.
 
-Android
-iOS
+---
 
-avec une base de code commune.
+## 🏗️ Project Architecture
+
+The solution follows a cross-platform mobile architecture based on Xamarin.Forms.
+
+```text
+GveApp.sln
+│
+├── GveApp
+│   │
+│   ├── Shared application logic
+│   ├── Views
+│   ├── Models
+│   ├── Services
+│   ├── API communication
+│   └── Application resources
+│
+├── GveApp.Android
+│   │
+│   └── Android-specific implementation
+│
+└── GveApp.iOS
+    │
+    └── iOS-specific implementation
+```
+
+The shared project contains the common application logic, while Android and iOS projects provide platform-specific implementations.
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology        | Usage                    |
+| ----------------- | ------------------------ |
+| **C#**            | Application development  |
+| **Xamarin.Forms** | Cross-platform mobile UI |
+| **Android**       | Mobile platform          |
+| **iOS**           | Mobile platform          |
+| **REST API**      | Backend communication    |
+| **JSON**          | Data exchange            |
+| **GPS**           | Geolocation              |
+| **Google Maps**   | Geographic visualization |
+| **QR Code**       | Module identification    |
+| **HTTP**          | API communication        |
+
+---
+
+## 📂 Repository Structure
+
+```text
+GveApp/
+│
+├── GveApp/
+│   ├── Models/
+│   ├── Views/
+│   ├── Services/
+│   ├── Resources/
+│   └── ...
+│
+├── GveApp.Android/
+│
+├── GveApp.iOS/
+│
+├── GveApp.sln
+├── .gitignore
+├── .gitattributes
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+To work with the project, you will need a compatible Xamarin development environment with:
+
+* Visual Studio
+* C# development tools
+* Xamarin.Forms
+* Android SDK for Android development
+* iOS development environment for iOS builds
+* Access to the required REST API
+* Google Maps configuration where required
+
+> Xamarin.Forms is a legacy technology and has reached end of support. This repository represents the technology used by the original application. A future modernization path could target .NET MAUI.
+
+---
+
+## 🔧 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/malado04/GveApp.git
+cd GveApp
+```
+
+Open the solution:
+
+```text
+GveApp.sln
+```
+
+Then restore the required NuGet dependencies and select the desired platform:
+
+```text
+GveApp.Android
+```
+
+or:
+
+```text
+GveApp.iOS
+```
+
+---
+
+## 🔌 Backend Configuration
+
+Before running the application, verify the API configuration used by the mobile application.
+
+The backend is responsible for providing resources such as:
+
+```text
+Modules
+Positions
+Tracking information
+```
+
+For production deployments, API URLs and sensitive configuration should be externalized rather than hard-coded into the application.
+
+---
+
+## 🧪 Project Status
+
+### Implemented / available in the current codebase
+
+* [x] Mobile authentication interface
+* [x] GPS location access
+* [x] Module/collar geolocation
+* [x] Map visualization
+* [x] Module listing
+* [x] REST API communication
+* [x] JSON data consumption
+* [x] QR Code scanning
+* [x] Android project
+* [x] iOS project
+* [x] Shared Xamarin.Forms application
+
+### In progress / prototype
+
+* [ ] Complete server-side notification system
+* [ ] Advanced application settings
+* [ ] Complete help/documentation screens
+* [ ] Production-grade backend integration
+* [ ] Automated tests
+* [ ] Modern mobile framework migration
+
+---
+
+## 🔮 Future Improvements
+
+Potential improvements include:
+
+### Mobile modernization
+
+Migration from:
+
+```text
+Xamarin.Forms
+```
+
+to:
+
+```text
+.NET MAUI
+```
+
+### Backend
+
+A modern backend could provide:
+
+```text
+REST API
+Authentication
+Device management
+Position management
+Real-time tracking
+Notifications
+Audit logs
+```
+
+### Real-time tracking
+
+Future versions could integrate:
+
+* WebSockets
+* SignalR
+* Push notifications
+* Real-time position updates
+* Geofencing
+* Tracking history
+
+### Security
+
+Potential improvements include:
+
+* Token-based authentication
+* Secure API configuration
+* HTTPS-only communication
+* Role-based access control
+* Secure local storage
+* API authorization
+* Audit logging
+
+---
+
+## 🎯 Business Use Cases
+
+GVE can serve as a foundation for applications involving:
+
+* Connected equipment monitoring
+* GPS tracking
+* Field equipment management
+* Asset tracking
+* Mobile geolocation
+* Connected devices
+* Geographic monitoring
+* QR-based equipment identification
+
+---
+
+## 📸 Screenshots
+
+Screenshots can be added here to demonstrate the main application workflows.
+
+Recommended screenshots:
+
+```text
+1. Login
+2. Dashboard / Home
+3. Interactive map
+4. Module list
+5. Module details
+6. QR Code scanner
+7. Notifications
+8. Settings
+```
+
+Example:
+
+```markdown
+![Login](docs/screenshots/login.png)
+![Map](docs/screenshots/map.png)
+![Modules](docs/screenshots/modules.png)
+```
+
+---
+
+## 📌 Engineering Highlights
+
+This project demonstrates experience in:
+
+* Cross-platform mobile development
+* C# development
+* Xamarin.Forms architecture
+* REST API integration
+* JSON data processing
+* GPS and geolocation
+* Geographic map visualization
+* QR Code integration
+* Mobile/backend communication
+* Platform-specific Android/iOS development
+
+---
+
+## 👨‍💻 Author
+
+**Amadou Malado Ndiaye**
+
+Software Engineer | Full Stack Developer | Software Architecture
+
+### Core technologies
+
+```text
+Java
+Spring Boot
+Laravel
+PHP
+Angular
+TypeScript
+C#
+PostgreSQL
+MySQL
+Docker
+Linux
+REST APIs
+```
+
+---
+
+## 📄 License
+
+This project is provided for portfolio, demonstration and development purposes.
+
+---
+
+## ⭐ Project
+
+If you find this project useful or interesting, feel free to explore the repository and follow the development.
+
+**Repository:**
+https://github.com/malado04/GveApp
